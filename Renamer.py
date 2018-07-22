@@ -1,6 +1,7 @@
 import os
 from pprint import pprint
 import re
+from tkinter.filedialog import askdirectory
 
 def showme(directory):
     return pprint(directory)
@@ -69,13 +70,11 @@ def replaceCharacters(oldString, newString):
         print("Cancelled")
 
 def tryGetDir():
-    print("Phil's Renamer\nBecareful that you don't \
-end up with 2 files the same name\n---------------------")
     try:
-        directory = formatSlashes(input("Enter directory that contains your files\n"))
+        #directory = formatSlashes(input("Enter directory that contains your files\n"))
+        folder = askdirectory()
+        directory = formatSlashes(folder)
         os.chdir(directory)
-        pprint(os.listdir())
-        print()
         foundDirectory = True
     except FileNotFoundError:
         print("You screwed up\n")
